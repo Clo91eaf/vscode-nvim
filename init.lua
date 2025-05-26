@@ -22,7 +22,7 @@ vim.api.nvim_create_augroup("highlight_yank", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = "highlight_yank",
   callback = function()
-    vim.highlight.on_yank { higroup = "IncSearch", timeout = 1000 }
+    vim.highlight.on_yank { higroup = "IncSearch", timeout = 200 }
   end,
 })
 
@@ -328,7 +328,7 @@ vim.keymap.set({ 'n', 'v' }, "<leader>ts", toggle.toggleSideBarVisibility)
 
 -- refactor
 vim.keymap.set({ 'v' }, "<leader>r", refactor.showMenu)
-vim.keymap set({ 'n' }, "<leader>rr", symbol.rename)
+vim.keymap.set({ 'n' }, "<leader>rr", symbol.rename)
 
 -- bookmark
 vim.keymap.set({ 'n' }, "<leader>m", bookmark.toggle)
