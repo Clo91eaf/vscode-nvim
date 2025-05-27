@@ -59,14 +59,6 @@ local file = {
     vim.fn.VSCodeNotify("explorer.newFile")
   end,
 
-  save = function()
-    vim.fn.VSCodeNotify("workbench.action.files.save")
-  end,
-
-  saveAll = function()
-    vim.fn.VSCodeNotify("workbench.action.files.saveAll")
-  end,
-
   format = function()
     vim.fn.VSCodeNotify("editor.action.formatDocument")
   end,
@@ -78,6 +70,10 @@ local file = {
   rename = function()
     vim.fn.VSCodeNotify("workbench.files.action.showActiveFileInExplorer")
     vim.fn.VSCodeNotify("renameFile")
+  end
+  
+  newBuffer = function()
+    vim.fn.VSCodeNotify("workbench.action.files.newUntitledFile")
   end
 }
 
@@ -275,9 +271,6 @@ nv_keymap('<leader>h', '^')
 nv_keymap('<leader>l', '$')
 nv_keymap('<leader>a', '%')
 
-nx_keymap('j', 'gj')
-nx_keymap('k', 'gk')
-
 vim.keymap.set({ 'n', 'v' }, "<leader>", whichkey.show)
 vim.keymap.set({ 'n', 'v' }, "<leader>/", comment.selected)
 
@@ -315,11 +308,12 @@ vim.keymap.set({ 'n' }, "<leader>ff", file.format)
 vim.keymap.set({ 'n' }, "<leader>fn", file.new)
 vim.keymap.set({ 'n' }, "<leader>ft", file.showInExplorer)
 vim.keymap.set({ 'n' }, "<leader>fr", file.rename)
+vim.keymap.set({ 'n' }, "<leader>fn", file.newBuffer)
 
 -- buffer/editor
-vim.keymap.set({ 'n', 'v' }, "<leader>c", editor.closeActive)
-vim.keymap.set({ 'n', 'v' }, "<leader>bd", editor.closeActive)
-vim.keymap.set({ 'n', 'v' }, "<leader>k", editor.closeOther)
+vim.keymap.set({ 'n', 'v' }, "<leader>bc", editor.closeActive)
+vim.keymap.set({ 'n', 'v' }, "<leader>bk", editor.closeOther)
+
 
 -- toggle
 vim.keymap.set({ 'n', 'v' }, "<leader>ta", toggle.toggleActivityBar)
